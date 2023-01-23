@@ -1,0 +1,8 @@
+node{
+stage('SCM Checkout){
+git 'https://github.com/lazycoder95/simple-java-maven-app'
+}
+stage('Compile'){
+sh 'mv package'
+}
+}
