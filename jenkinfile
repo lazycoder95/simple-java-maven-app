@@ -3,6 +3,7 @@ stage('SCM Checkout'){
 git 'https://github.com/lazycoder95/simple-java-maven-app'
 }
 stage('Compile'){
-sh 'mv package'
+def mvnhome = tool name: 'maven-3', type: 'maven'
+sh "${mvnhoome}/bin/mvn package"
 }
 }
