@@ -4,6 +4,6 @@ git 'https://github.com/lazycoder95/simple-java-maven-app'
 }
 stage('Compile'){
 def mvnhome = tool name: 'maven-3', type: 'maven'
-sh "${mvnhoome}/bin/mvn package"
+sh "${mvnhome}/bin/mvn package"
 }
 }
