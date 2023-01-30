@@ -10,7 +10,7 @@ sh "${mvnhome}/bin/mvn package"
 stage('SonarQube analysis') {
 def mvnhome = tool name: 'maven-3', type: 'maven'
     withSonarQubeEnv(sonar-8) { // You can override the credential to be used
-      sh '$mvnhome/bin/mvn sonar-scanner:sonar'
+      sh "$mvnhome/bin/mvn sonar:sonar"
     }
   }
 
