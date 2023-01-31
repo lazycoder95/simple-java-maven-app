@@ -11,7 +11,7 @@ stage('SonarQube analysis') {
 def mvnhome = tool name: 'maven-3', type: 'maven'
 //ScannerHome = tool name: 'sonarscanner'
     withSonarQubeEnv('sonar-8') { // You can override the credential to be used
-      sh "${mvnhome}/bin/mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar"
+      sh "${mvnhome}/bin/mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar -Dsonar.login=sqp_b46b9987940414aa2464b54206569aa7a1095169"
     }
   }
 
