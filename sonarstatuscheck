@@ -1,0 +1,28 @@
+node{
+stage('SCM Checkout'){
+git 'https://github.com/lazycoder95/simple-java-maven-app'
+}
+stage('Compile'){
+def mvnhome = tool name: 'maven-3', type: 'maven'
+sh "${mvnhome}/bin/mvn package"
+}
+
+stage('SonarQube analysis') {
+def mvnhome = tool name: 'maven-3', type: 'maven'
+//ScannerHome = tool name: 'sonarscanner'
+    withSonarQubeEnv('sonar-8') { // You can override the credential to be used
+      sh "${mvnhome}/bin/mvn sonar:sonar \
+  -Dsonar.projectKey=test \
+  -Dsonar.host.url=http://10.0.2.4:9000 \
+  -Dsonar.login=sqp_c6b2e7f6838a2081b64d69922571f27d5c72a4c1"
+    }
+  }
+  
+
+
+stage('slack notificatio')
+{
+slackSend baseUrl: 'https://hooks.slack.com/services/', 
+channel: '#jenkins-demo', color: 'good', message: 'HO', teamDomain: 'TeamDemo', 
+tokenCredentialId: 'SLACK-DEMO'}
+}
