@@ -18,7 +18,17 @@ def mvnhome = tool name: 'maven-3', type: 'maven'
     }
   }
   
-
+stage("Quality Gate"){
+          timeout(time: 1, unit: 'HOURS') {
+              def qg = waitForQualityGate()
+              if (qg.status != 'OK') {
+              slackSend baseUrl: 'https://hooks.slack.com/services/', 
+                channel: '#jenkins-demo', color: 'bad', message: 'SonarQube status', 
+                teamDomain: 'TeamDemo', tokenCredentialId: 'SLACK-DEMO'
+                  error "Pipeline aborted due to quality gate failure: ${qg.status}"
+              }
+          }
+      }    
 
 stage('slack notificatio')
 {
