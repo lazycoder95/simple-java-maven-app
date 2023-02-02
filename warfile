@@ -11,7 +11,7 @@ stage('deploy to tom')
 {
 sshagent(['sshtest']) {
     // some block
-    sh 'scp -o StrictHostKeyChecking=no target/*.war deva@192.168.68.2:/opt/tomcat/webapps'
+    sh 'scp -o StrictHostKeyChecking=no target/*.war root@192.168.68.2:/opt/tomcat/webapps'
 }
 }
 
