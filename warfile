@@ -6,6 +6,15 @@ stage('Compile'){
 def mvnhome = tool name: 'maven-3', type: 'maven'
 sh "${mvnhome}/bin/mvn package"
 }
+
+stage('deploy to tom')
+{
+sshagent(['sshtest']) {
+    // some block
+    sh 'scp -o StrictHostKeyChecking=no target/*.war root@192.168.68.2:/opt/tomcat/webapps'
+}
+}
+
 stage('slack notificatio')
 {
 slackSend baseUrl: 'https://hooks.slack.com/services/', 
