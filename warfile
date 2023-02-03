@@ -9,9 +9,9 @@ sh "${mvnhome}/bin/mvn package"
 
 stage('deploy to tom')
 {
-sshagent(['sshtest']) {
+sshagent(['newtest']) {
     // some block
-    sh 'scp -o StrictHostKeyChecking=no target/*.war root@192.168.68.2:/opt/tomcat/webapps'
+    sh 'scp -o StrictHostKeyChecking=no target/*.war deva@192.168.68.2:/opt/tomcat/webapps'
 }
 }
 
