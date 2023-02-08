@@ -14,7 +14,7 @@ sshagent(['pubtest']) {
     sh 'scp -o StrictHostKeyChecking=no target/*.war root@192.168.68.2:/opt/tomcat/webapps'
 }
 }
-
+//new
 stage('slack notificatio')
 {
 slackSend baseUrl: 'https://hooks.slack.com/services/', 
