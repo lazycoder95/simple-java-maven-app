@@ -6,4 +6,5 @@ stage('Compile'){
 def mvnhome = tool name: 'mvn3', type: 'maven'
 sh "${mvnhome}/bin/mvn package"
 }
+
 }
