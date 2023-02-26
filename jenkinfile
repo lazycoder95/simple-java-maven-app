@@ -3,12 +3,7 @@ stage('SCM Checkout'){
 git 'https://github.com/lazycoder95/simple-java-maven-app'
 }
 stage('Compile'){
-def mvnhome = tool name: 'maven-3', type: 'maven'
+def mvnhome = tool name: 'mvn3', type: 'maven'
 sh "${mvnhome}/bin/mvn package"
 }
-stage('slack notificatio')
-{
-slackSend baseUrl: 'https://hooks.slack.com/services/', 
-channel: '#jenkins-demo', color: 'good', message: 'HO', teamDomain: 'TeamDemo', 
-tokenCredentialId: 'SLACK-DEMO'}
 }
